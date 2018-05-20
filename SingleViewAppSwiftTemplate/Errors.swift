@@ -19,8 +19,4 @@ enum InvalidField: String, Error {
   case invalidManagementTier = "Invalid Management Tier"
 }
 
-enum PopulateError: Error {
-  case failedPopulateOnEmployee
-  case failedPopulateOnGuest
-}
 
