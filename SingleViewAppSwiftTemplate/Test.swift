@@ -62,7 +62,7 @@ class Test {
     print("\n--- Test case 7 ---")
     print("Free Child Guest")
     do {
-      let date = dateFormatter.date(from: "12/12/2015")
+      let date = dateFormatter.date(from: "12/12/1992")
       let child = try Child(birthday: date)
       if let infoChild = child.print() { print(infoChild) }
       
@@ -70,8 +70,10 @@ class Test {
       
       print("\n" + checkpoint.canAccess(toArea: .kitchen, withPass: &pass))
       
-    } catch let error {
-      print("Error Child Guest: \(error)")
+    } catch let error as InvalidField {
+      print("Error Child Guest: \(error.rawValue)")
+    } catch {
+      print("Unexpected error: \(error).")
     }
     
     // Free Child Guest: Percentage of discount at Food Area
