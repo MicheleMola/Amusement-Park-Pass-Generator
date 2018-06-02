@@ -17,6 +17,9 @@ enum InvalidField: String, Error {
   case invalidFreeAge = "Invalid Age for Free Child Guest"
   case invalidSocialSecurityNumber = "Invalid Social Security Number"
   case invalidManagementTier = "Invalid Management Tier"
+  case invalidProjectNumber = "Invalid Project Number"
+  case invalidDateOfVisit = "Invalid Date Of Visit"
+  case invalidCompany = "Invalid Company Name"
 }
 
 

@@ -52,6 +52,12 @@ protocol Employee: Entrant {
   var socialSecurityNumber: Int? { get }
 }
 
-
+protocol Vendor: Entrant {
+  var firstName: String? { get }
+  var lastName: String? { get }
+  var birthday: Date? { get }
+  var company: String? { get }
+  var dateOfVisit: Date? { get }
+}
 
 

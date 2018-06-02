@@ -187,6 +187,72 @@ struct Manager: Employee {
   }
 }
 
+struct Contract: Employee {
+  var firstName: String?
+  var lastName: String?
+  var birthday: Date?
+  var streetAddress: String?
+  var city: String?
+  var state: String?
+  var zipCode: Int?
+  var socialSecurityNumber: Int?
+  
+  var projectNumber: Int?
+  
+  var areaAccess: [AreaAccess]
+  var rideAccess: [RideAccess] = []
+  var discountAccess: DiscountAccess = (0, 0)
+
+  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, projectNumber: Int?) throws {
+    
+    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    self.firstName = firstName
+    
+    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    self.lastName = lastName
+    
+    guard let birthday = birthday else { throw InvalidField.invalidBirthday }
+    self.birthday = birthday
+    
+    guard let streetAddress = streetAddress else { throw InvalidField.invalidAddress }
+    self.streetAddress = streetAddress
+    
+    guard let city = city else { throw InvalidField.invalidCity }
+    self.city = city
+    
+    guard let state = state else { throw InvalidField.invalidState }
+    self.state = state
+    
+    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    self.zipCode = zipCode
+    
+    guard let socialSecurityNumber = socialSecurityNumber else { throw InvalidField.invalidSocialSecurityNumber }
+    self.socialSecurityNumber = socialSecurityNumber
+    
+    guard let projectNumber = projectNumber else { throw InvalidField.invalidProjectNumber }
+    
+    switch projectNumber {
+    case 1001:
+      self.areaAccess = [.amusement, .rideControl]
+    case 1002:
+      self.areaAccess = [.amusement, .maintenance, .rideControl]
+    case 1003:
+      self.areaAccess = [.amusement, .maintenance, .rideControl, .kitchen, .office]
+    case 2001:
+      self.areaAccess = [.office]
+    case 2002:
+      self.areaAccess = [.maintenance, .kitchen]
+    default:
+      throw InvalidField.invalidProjectNumber
+    }
+    
+    self.projectNumber = projectNumber
+    
+  }
+  
+  
+}
+
 extension Employee {
   func print() -> String? {
     guard let firstName = self.firstName, let lastName = self.lastName, let birthday = self.birthday, let streetAddress = self.streetAddress, let city = self.city, let state = self.state, let zipCode = self.zipCode, let socialSecurityNumber = self.socialSecurityNumber else { return nil }
