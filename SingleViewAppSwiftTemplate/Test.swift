@@ -12,6 +12,7 @@ class Test {
   
   let checkpoint = Checkpoint()
   
+  /*
   func test() {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -311,5 +312,6 @@ class Test {
     
     
   }
+ */
 }
 

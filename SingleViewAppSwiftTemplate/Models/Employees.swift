@@ -22,13 +22,13 @@ struct FoodServiceEmployee: Employee {
   var city: String?
   var state: String?
   var zipCode: Int?
-  var socialSecurityNumber: Int?
+  var socialSecurityNumber: String?
   
   let areaAccess: [AreaAccess] = [.amusement, .kitchen]
   let rideAccess: [RideAccess] = [.all]
   let discountAccess: DiscountAccess = (15, 25)
   
-  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?) throws {
+  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: String?) throws {
     
     guard let firstName = firstName else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
@@ -64,36 +64,36 @@ struct RideServiceEmployee: Employee {
   var city: String?
   var state: String?
   var zipCode: Int?
-  var socialSecurityNumber: Int?
+  var socialSecurityNumber: String?
   
   let areaAccess: [AreaAccess] = [.amusement, .rideControl]
   let rideAccess: [RideAccess] = [.all]
   let discountAccess: DiscountAccess = (15, 25)
   
-  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?) throws {
+  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: String?) throws {
     
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
     self.birthday = birthday
     
-    guard let streetAddress = streetAddress else { throw InvalidField.invalidAddress }
+    guard let streetAddress = streetAddress, !streetAddress.isEmpty else { throw InvalidField.invalidAddress }
     self.streetAddress = streetAddress
     
-    guard let city = city else { throw InvalidField.invalidCity }
+    guard let city = city, !city.isEmpty else { throw InvalidField.invalidCity }
     self.city = city
     
-    guard let state = state else { throw InvalidField.invalidState }
+    guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
     guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
   }
 }
@@ -106,36 +106,36 @@ struct MaintenanceEmployee: Employee {
   var city: String?
   var state: String?
   var zipCode: Int?
-  var socialSecurityNumber: Int?
+  var socialSecurityNumber: String?
   
   let areaAccess: [AreaAccess] = [.amusement, .rideControl, .kitchen, .maintenance]
   let rideAccess: [RideAccess] = [.all]
   let discountAccess: DiscountAccess = (15, 25)
   
-  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?) throws {
+  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: String?) throws {
     
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
     self.birthday = birthday
     
-    guard let streetAddress = streetAddress else { throw InvalidField.invalidAddress }
+    guard let streetAddress = streetAddress, !streetAddress.isEmpty else { throw InvalidField.invalidAddress }
     self.streetAddress = streetAddress
     
-    guard let city = city else { throw InvalidField.invalidCity }
+    guard let city = city, !city.isEmpty else { throw InvalidField.invalidCity }
     self.city = city
     
-    guard let state = state else { throw InvalidField.invalidState }
+    guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
     guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
   }
 }
@@ -148,38 +148,38 @@ struct Manager: Employee {
   var city: String?
   var state: String?
   var zipCode: Int?
-  var socialSecurityNumber: Int?
+  var socialSecurityNumber: String?
   
-  var managementTier: ManagerTier
+  var managementTier: ManagerType
   
   let areaAccess: [AreaAccess] = [.amusement, .rideControl, .kitchen, .maintenance, .office]
   let rideAccess: [RideAccess] = [.all]
   let discountAccess: DiscountAccess = (25, 25)
   
-  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, managementTier: ManagerTier?) throws {
+  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: String?, managementTier: ManagerType?) throws {
     
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
     self.birthday = birthday
     
-    guard let streetAddress = streetAddress else { throw InvalidField.invalidAddress }
+    guard let streetAddress = streetAddress, !streetAddress.isEmpty else { throw InvalidField.invalidAddress }
     self.streetAddress = streetAddress
     
-    guard let city = city else { throw InvalidField.invalidCity }
+    guard let city = city, !city.isEmpty else { throw InvalidField.invalidCity }
     self.city = city
     
-    guard let state = state else { throw InvalidField.invalidState }
+    guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
     guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
     
     guard let managementTier = managementTier else { throw InvalidField.invalidManagementTier }
@@ -195,7 +195,7 @@ struct Contract: Employee {
   var city: String?
   var state: String?
   var zipCode: Int?
-  var socialSecurityNumber: Int?
+  var socialSecurityNumber: String?
   
   var projectNumber: Int?
   
@@ -203,30 +203,30 @@ struct Contract: Employee {
   var rideAccess: [RideAccess] = []
   var discountAccess: DiscountAccess = (0, 0)
 
-  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, projectNumber: Int?) throws {
+  init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: String?, projectNumber: Int?) throws {
     
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
     self.birthday = birthday
     
-    guard let streetAddress = streetAddress else { throw InvalidField.invalidAddress }
+    guard let streetAddress = streetAddress, !streetAddress.isEmpty else { throw InvalidField.invalidAddress }
     self.streetAddress = streetAddress
     
-    guard let city = city else { throw InvalidField.invalidCity }
+    guard let city = city, !city.isEmpty else { throw InvalidField.invalidCity }
     self.city = city
     
-    guard let state = state else { throw InvalidField.invalidState }
+    guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
     guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
     
     guard let projectNumber = projectNumber else { throw InvalidField.invalidProjectNumber }

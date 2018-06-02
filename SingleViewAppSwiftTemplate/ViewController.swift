@@ -64,6 +64,10 @@ class ViewController: UIViewController {
   lazy var contractCollection: [LabelAndTextField] = [firstnameGroup, lastnameGroup, streetAddressGroup, cityGroup, stateGroup, zipCodeGroup, dateOfBirthGroup, ssnGroup, projectNumberGroup]
   lazy var vendorCollection: [LabelAndTextField] = [firstnameGroup, lastnameGroup, dateOfVisitGroup, dateOfBirthGroup]
   
+  let projectNumbers = [1001, 1002, 1003, 2001, 2002]
+  
+  var entrantType: EntrantType = EntrantType.none
+  
   var selectedType: String {
     return typeSegmentedControl.titleForSegment(at: typeSegmentedControl.selectedSegmentIndex)!
   }
@@ -92,6 +96,8 @@ class ViewController: UIViewController {
   }
   
   func showSubtype() {
+    setEnabled(fromGroup: fieldsCollection, toValue: false)
+    
     var subtypes = [String]()
     switch selectedType {
     case "Guest":
@@ -123,30 +129,45 @@ class ViewController: UIViewController {
       switch selectedSubtype {
       case GuestType.child.rawValue:
         fieldsToEnable = childCollection
+        entrantType = .guest(type: .child)
       case GuestType.senior.rawValue:
         fieldsToEnable = seniorCollection
+        entrantType = .guest(type: .senior)
       case GuestType.seasonPass.rawValue:
         fieldsToEnable = seasonPassCollection
+        entrantType = .guest(type: .seasonPass)
+      case GuestType.classic.rawValue:
+        entrantType = .guest(type: .classic)
+      case GuestType.vip.rawValue:
+        entrantType = .guest(type: .vip)
       default:
         break
       }
     case "Employee":
       switch selectedSubtype {
-      case EmployeeType.foodServices.rawValue, EmployeeType.maintenance.rawValue, EmployeeType.rideServices.rawValue:
+      case EmployeeType.foodServices.rawValue:
         fieldsToEnable = employeeBaseCollection
+        entrantType = .employee(type: .foodServices)
+      case EmployeeType.maintenance.rawValue:
+        fieldsToEnable = employeeBaseCollection
+        entrantType = .employee(type: .maintenance)
+      case EmployeeType.rideServices.rawValue:
+        fieldsToEnable = employeeBaseCollection
+        entrantType = .employee(type: .rideServices)
       case EmployeeType.contract.rawValue:
         fieldsToEnable = contractCollection
+        entrantType = .employee(type: .contract)
       default:
         break
       }
     case "Manager":
-      // Management tier from selected subtype
-      
       fieldsToEnable = employeeBaseCollection
+      entrantType = .manager
       
     case "Vendor":
       companyTextField.text = selectedSubtype
       fieldsToEnable = vendorCollection
+      entrantType = .vendor
     default:
       break
     }
@@ -164,14 +185,183 @@ class ViewController: UIViewController {
   
   
   @IBAction func populateDataPressed(_ sender: UIButton) {
-    
+    populateForm()
   }
   
   
   @IBAction func generatePassPressed(_ sender: UIButton) {
+    let pass = generatePass()
+    print(pass)
+  }
+}
+
+
+// Populate Form & Generate Pass
+extension ViewController {
+  
+  enum LabelText: String {
+    case firstname = "First Name"
+    case lastname = "Last Name"
+    case dateOfVisit = "Date of Visit"
+    case streetAddress = "Street Address"
+    case city = "City"
+    case state = "State"
+    case zipCode = "Zip Code"
+    case dateOfBirth = "Date of Birth"
+    case ssn = "SSN"
+    case projectNumber = "Project #"
+  }
+  
+  func getText(fromLabel label: UILabel) -> String? {
+    if let text = label.text, let labelText = LabelText(rawValue: text) {
+      switch labelText {
+      case .firstname:
+        return "Michele"
+      case .lastname:
+        return "Mola"
+      case .dateOfVisit:
+        return "06 / 01 / 2018"
+      case .streetAddress:
+        return "Via Giacomo Leopardi 10"
+      case .city:
+        return "Naples"
+      case .state:
+        return "Italy"
+      case .zipCode:
+        return "80147"
+      case .dateOfBirth:
+        return "12 / 10 / 1992"
+      case .ssn:
+        return "081-32-2678"
+      case .projectNumber:
+        guard let projectNumber = projectNumbers.randomItem() else { return nil }
+        return "\(projectNumber)"
+      }
+    }
+    return nil
+  }
+  
+  func populateForm() {
+    fieldsCollection.forEach({ label, textField in
+      if textField.isEnabled {
+        textField.text = getText(fromLabel: label)
+      }
+    })
   }
   
   
+  func generatePass() -> Pass {
+    var entrant: Entrant!
+    switch entrantType {
+    case .employee(let type):
+      switch type {
+      case .rideServices:
+        do {
+          let employee = try RideServiceEmployee(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text)
+          entrant = employee
+        } catch let error {
+          showAlert(withError: error)
+        }
+
+      case .foodServices:
+        do {
+          let employee = try FoodServiceEmployee(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text)
+          entrant = employee
+        } catch let error {
+          showAlert(withError: error)
+        }
+        
+      case .contract:
+        do {
+          let employee = try Contract(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text, projectNumber: projectNumberTextField.text.convertToInt())
+          entrant = employee
+        } catch let error {
+          showAlert(withError: error)
+        }
+        
+      case .maintenance:
+        do {
+          let employee = try MaintenanceEmployee(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text)
+          entrant = employee
+        } catch let error {
+          showAlert(withError: error)
+        }
+        
+      }
+    case .manager:
+      do {
+        let managerType = ManagerType(rawValue: selectedSubtype)
+        let employee = try Manager(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text, managementTier: managerType)
+        entrant = employee
+      } catch let error {
+        showAlert(withError: error)
+      }
+    case .guest(let type):
+      switch type {
+      case .child:
+        do {
+          let guest = try Child(birthday: getDate(fromTextField: dateOfBirthTextField))
+          entrant = guest
+        } catch let error {
+          showAlert(withError: error)
+        }
+      case .classic:
+          let guest = Classic()
+          entrant = guest
+      case .seasonPass:
+        do {
+          let guest =  try SeasonPass(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt())
+          entrant = guest
+        } catch let error {
+          showAlert(withError: error)
+        }
+        
+      case .senior:
+        do {
+          let guest = try Senior(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField))
+          entrant = guest
+        } catch let error {
+          showAlert(withError: error)
+        }
+      case .vip:
+        let guest = Vip()
+        entrant = guest
+      }
+    case .vendor:
+      do {
+        let vendor = try VendorCompany(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), company: companyTextField.text, dateOfVisit: getDate(fromTextField: dateOfVisitTextField))
+        entrant = vendor
+      } catch let error {
+        showAlert(withError: error)
+      }
+    default:
+      break
+    }
+    return Pass(entrant: entrant)
+  }
+  
+  func getDate(fromTextField textField: UITextField) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM / dd / yyyy"
+    guard let dateText = textField.text else { return nil }
+    let date = dateFormatter.date(from: dateText)
+    return date
+  }
+  
+  func showAlert(withError error: Error) {
+    var message = String()
+    
+    if let error = error as? InvalidField {
+      message = error.rawValue
+    } else {
+      message = error.localizedDescription
+    }
+    
+    let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+    present(alert, animated: true, completion: nil)
+  }
   
   
 }
+

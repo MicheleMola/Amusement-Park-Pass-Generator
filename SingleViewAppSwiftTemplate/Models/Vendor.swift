@@ -20,10 +20,10 @@ struct VendorCompany: Vendor {
   var discountAccess: DiscountAccess = (0, 0)
   
   init(firstName: String?, lastName: String?, birthday: Date?, company: String?, dateOfVisit: Date?) throws {
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
@@ -32,7 +32,7 @@ struct VendorCompany: Vendor {
     guard let dateOfVisit = dateOfVisit else { throw InvalidField.invalidDateOfVisit }
     self.dateOfVisit = dateOfVisit
     
-    guard let company = company else { throw InvalidField.invalidCompany }
+    guard let company = company, !company.isEmpty else { throw InvalidField.invalidCompany }
     
     switch company {
     case VendorName.acme.rawValue:

@@ -52,8 +52,11 @@ extension VendorName {
   static let all = [acme.rawValue, orkin.rawValue, fedex.rawValue, nwElectrical.rawValue]
 }
 
-// I will need in the next part of the project - To manage the type of entrant after selecting from the menu
+
 enum EntrantType {
-  case guest(GuestType)
-  case employee(EmployeeType)
+  case none
+  case guest(type: GuestType)
+  case employee(type: EmployeeType)
+  case manager
+  case vendor
 }

@@ -49,7 +49,7 @@ protocol Employee: Entrant {
   var city: String? { get }
   var state: String? { get }
   var zipCode: Int? { get }
-  var socialSecurityNumber: Int? { get }
+  var socialSecurityNumber: String? { get }
 }
 
 protocol Vendor: Entrant {

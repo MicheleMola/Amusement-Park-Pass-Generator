@@ -64,22 +64,22 @@ struct SeasonPass: Guest {
   
   init(firstName: String?, lastName: String?, birthday: Date?, streetAddress: String?, city: String?, state: String?, zipCode: Int? ) throws {
     
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
     self.birthday = birthday
     
-    guard let streetAddress = streetAddress else { throw InvalidField.invalidAddress }
+    guard let streetAddress = streetAddress, !streetAddress.isEmpty else { throw InvalidField.invalidAddress }
     self.streetAddress = streetAddress
     
-    guard let city = city else { throw InvalidField.invalidCity }
+    guard let city = city, !city.isEmpty else { throw InvalidField.invalidCity }
     self.city = city
     
-    guard let state = state else { throw InvalidField.invalidState }
+    guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
     guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
@@ -98,10 +98,10 @@ struct Senior: Guest {
   let birthday: Date?
   
   init(firstName: String?, lastName: String?, birthday: Date?) throws {
-    guard let firstName = firstName else { throw InvalidField.invalidFirstName }
+    guard let firstName = firstName, !firstName.isEmpty else { throw InvalidField.invalidFirstName }
     self.firstName = firstName
     
-    guard let lastName = lastName else { throw InvalidField.invalidLastName }
+    guard let lastName = lastName, !lastName.isEmpty else { throw InvalidField.invalidLastName }
     self.lastName = lastName
     
     guard let birthday = birthday else { throw InvalidField.invalidBirthday }
