@@ -68,6 +68,9 @@ class ViewController: UIViewController {
   
   var entrantType: EntrantType = EntrantType.none
   
+  lazy var datePickerView: UIDatePicker = UIDatePicker()
+  lazy var selectedTextField: UITextField = UITextField()
+  
   var selectedType: String {
     return typeSegmentedControl.titleForSegment(at: typeSegmentedControl.selectedSegmentIndex)!
   }
@@ -85,6 +88,10 @@ class ViewController: UIViewController {
   func setupView() {
     showSubtype()
     setEnabled(fromGroup: fieldsCollection, toValue: false)
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+  
   }
   
   @IBAction func typeSegmentedControlPressed() {
@@ -191,7 +198,46 @@ class ViewController: UIViewController {
   
   @IBAction func generatePassPressed(_ sender: UIButton) {
     let pass = generatePass()
-    print(pass)
+    if let pass = pass {
+      performSegue(withIdentifier: "showPass", sender: pass)
+    }
+  }
+  
+  @IBAction func textFieldDateEditing(_ sender: UITextField) {
+    datePickerView.datePickerMode = .date
+    
+    sender.inputView = datePickerView
+    
+    selectedTextField = sender
+      
+    let toolbar = UIToolbar()
+    toolbar.sizeToFit()
+    
+    let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+    toolbar.setItems([done], animated: false)
+    
+    sender.inputAccessoryView = toolbar
+    sender.inputView = datePickerView
+    
+    datePickerView.datePickerMode = .date
+  }
+  
+  @objc func donePressed() {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MM / dd / yyyy"
+    
+    let dateString = formatter.string(from: datePickerView.date)
+    selectedTextField.text = "\(dateString)"
+    self.view.endEditing(true)
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showPass" {
+      if let passViewController = segue.destination as? PassViewController {
+        passViewController.pass = sender as? Pass
+      }
+    }
   }
 }
 
@@ -250,8 +296,9 @@ extension ViewController {
   }
   
   
-  func generatePass() -> Pass {
+  func generatePass() -> Pass? {
     var entrant: Entrant!
+    var passType: PassType
     switch entrantType {
     case .employee(let type):
       switch type {
@@ -259,32 +306,40 @@ extension ViewController {
         do {
           let employee = try RideServiceEmployee(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text)
           entrant = employee
+          passType = .rideServicesEmployee
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
 
       case .foodServices:
         do {
           let employee = try FoodServiceEmployee(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text)
           entrant = employee
+          passType = .foodServicesEmployee
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
         
       case .contract:
         do {
           let employee = try Contract(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text, projectNumber: projectNumberTextField.text.convertToInt())
           entrant = employee
+          passType = .contractEmployee
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
         
       case .maintenance:
         do {
           let employee = try MaintenanceEmployee(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text)
           entrant = employee
+          passType = .maintenanceEmployee
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
         
       }
@@ -293,8 +348,10 @@ extension ViewController {
         let managerType = ManagerType(rawValue: selectedSubtype)
         let employee = try Manager(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt(), socialSecurityNumber: ssnTextField.text, managementTier: managerType)
         entrant = employee
+        passType = .manager
       } catch let error {
         showAlert(withError: error)
+        return nil
       }
     case .guest(let type):
       switch type {
@@ -302,47 +359,58 @@ extension ViewController {
         do {
           let guest = try Child(birthday: getDate(fromTextField: dateOfBirthTextField))
           entrant = guest
+          passType = .childGuest
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
       case .classic:
-          let guest = Classic()
-          entrant = guest
+        let guest = Classic()
+        entrant = guest
+        passType = .classicGuest
       case .seasonPass:
         do {
           let guest =  try SeasonPass(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), streetAddress: streetAddressTextField.text, city: cityTextField.text, state: stateTextField.text, zipCode: zipCodeTextField.text.convertToInt())
           entrant = guest
+          passType = .seasonGuest
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
         
       case .senior:
         do {
           let guest = try Senior(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField))
           entrant = guest
+          passType = .seniorGuest
         } catch let error {
           showAlert(withError: error)
+          return nil
         }
       case .vip:
         let guest = Vip()
         entrant = guest
+        passType = .vipGuest
       }
     case .vendor:
       do {
         let vendor = try VendorCompany(firstName: firstnameTextField.text, lastName: lastnameTextField.text, birthday: getDate(fromTextField: dateOfBirthTextField), company: companyTextField.text, dateOfVisit: getDate(fromTextField: dateOfVisitTextField))
         entrant = vendor
+        passType = .vendor
       } catch let error {
         showAlert(withError: error)
+        return nil
       }
     default:
-      break
+      return nil
     }
-    return Pass(entrant: entrant)
+    return Pass(entrant: entrant, type: passType)
   }
   
   func getDate(fromTextField textField: UITextField) -> Date? {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM / dd / yyyy"
+    
     guard let dateText = textField.text else { return nil }
     let date = dateFormatter.date(from: dateText)
     return date
@@ -362,6 +430,17 @@ extension ViewController {
     present(alert, animated: true, completion: nil)
   }
   
+}
+
+// Keyboard
+extension ViewController {  
+  @objc func keyboardWillShow(sender: NSNotification) {
+    self.view.frame.origin.y -= 150
+  }
+  
+  @objc func keyboardWillHide(sender: NSNotification) {
+    self.view.frame.origin.y += 150
+  }
   
 }
 

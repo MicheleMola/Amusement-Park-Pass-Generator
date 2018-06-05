@@ -12,35 +12,79 @@ class Checkpoint {
   
   private let delaySwipe = 5
   
-  func canAccess(toArea area: AreaAccess, withPass pass: inout Pass) -> String {
-    if isValidSwipeTime(fromPass: &pass) {
-      let birthday = pass.entrant.getBirthday()
-      return pass.entrant.areaAccess.contains(area) ? "\(checkBirthday(fromBirthday: birthday))\(area.rawValue) Access Allowed at: \(Date())" : "\(area.rawValue) Access Not Allowed"
-    } else {
-      return "Alert: \(area.rawValue) Access Not Allowed at \(Date())"
+  let correctSound = SoundManager(fileName: "CorrectDing", fileType: "wav", idSound: 0)
+  let wrongSound = SoundManager(fileName: "IncorrectBuzz", fileType: "wav", idSound: 1)
+  
+  init() {
+    loadSound()
+  }
+  
+  func loadSound() {
+    do {
+      try correctSound.load()
+      try wrongSound.load()
+    } catch {
+      print(error)
     }
   }
   
-  func percentageDiscount(atArea area: DiscountArea, withPass pass: inout Pass) -> String {
+  func canAccess(toArea area: AreaAccess, withPass pass: inout Pass) -> (String, Bool) {
+    if isValidSwipeTime(fromPass: &pass) {
+      let birthday = pass.entrant.getBirthday()
+      if pass.entrant.areaAccess.contains(area) {
+        let birthdayString = checkBirthday(fromBirthday: birthday)
+        correctSound.play()
+        return ("\(birthdayString)Access Allowed", true)
+      } else {
+        wrongSound.play()
+        return ("Access Not Allowed", false)
+      }
+    } else {
+      wrongSound.play()
+      return ("Swiped twice within 5 seconds, wait and try again.", false)
+    }
+  }
+  
+  func percentageDiscount(atArea area: DiscountArea, withPass pass: inout Pass) -> (String, Bool) {
     if isValidSwipeTime(fromPass: &pass) {
       let birthday = pass.entrant.getBirthday()
       switch area {
       case .food:
-        return "\(checkBirthday(fromBirthday: birthday))Discount on food: \(pass.entrant.discountAccess.food)%. Date and time: \(Date())"
+        if (pass.entrant.discountAccess.food != 0) {
+          correctSound.play()
+          return ("\(checkBirthday(fromBirthday: birthday))Discount on food: \(pass.entrant.discountAccess.food)%", true)
+        }
+        wrongSound.play()
+        return ("No Discount on food", false)
+        
       case .merchandise:
-        return "\(checkBirthday(fromBirthday: birthday))Discount on merchandise: \(pass.entrant.discountAccess.merchandise)%. Date and time: \(Date())"
+        if (pass.entrant.discountAccess.merchandise != 0) {
+          correctSound.play()
+          return ("\(checkBirthday(fromBirthday: birthday))Discount on merchandise: \(pass.entrant.discountAccess.merchandise)%", true)
+        }
+        wrongSound.play()
+        return ("No Discount on merchandise", false)
       }
     } else {
-      return "Alert: \(area) Access Not Allowed at \(Date())"
+      wrongSound.play()
+      return ("Swiped twice within 5 seconds, wait and try again.", false)
     }
   }
   
-  func canAccess(toRide ride: RideAccess, withPass pass: inout Pass) -> String {
+  func canAccess(toRide ride: RideAccess, withPass pass: inout Pass) -> (String, Bool) {
     if isValidSwipeTime(fromPass: &pass) {
       let birthday = pass.entrant.getBirthday()
-      return pass.entrant.rideAccess.contains(ride) ? "\(checkBirthday(fromBirthday: birthday))\(ride.rawValue) Allowed at: \(Date())" : "\(ride.rawValue) Not Allowed"
+      if pass.entrant.rideAccess.contains(ride) {
+        let birthdayString = checkBirthday(fromBirthday: birthday)
+        correctSound.play()
+        return ("\(birthdayString)Access Allowed", true)
+      } else {
+        wrongSound.play()
+        return ("Access Not Allowed", false)
+      }
     } else {
-      return "Alert: \(ride.rawValue) Access Not Allowed at \(Date())"
+      wrongSound.play()
+      return ("Swiped twice within 5 seconds, wait and try again.", false)
     }
   }
   
@@ -53,6 +97,7 @@ class Checkpoint {
       let unitFlags = Set<Calendar.Component>([ .second ])
       let datecomponenets = calendar.dateComponents(unitFlags, from: pass.swipeTime!, to: Date())
       let seconds = datecomponenets.second
+      pass.swipeTime = Date()
       if let seconds = seconds {
         if seconds < delaySwipe {
           return false

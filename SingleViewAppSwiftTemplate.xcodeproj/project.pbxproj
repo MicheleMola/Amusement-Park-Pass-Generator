@@ -15,6 +15,10 @@
 		3A8AADDE1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADDD1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift */; };
 		3A8AADE91DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */; };
 		DE115F0420BFEED200146870 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE115F0320BFEED200146870 /* SegmentedControl.swift */; };
+		DE4DF16520C6E7CE00999225 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4DF16420C6E7CE00999225 /* SoundManager.swift */; };
+		DE4DF16920C6E87600999225 /* CorrectDing.wav in Resources */ = {isa = PBXBuildFile; fileRef = DE4DF16720C6E87600999225 /* CorrectDing.wav */; };
+		DE4DF16A20C6E87600999225 /* IncorrectBuzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */; };
+		DE64C8D620C5DFC600059BBC /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE64C8D520C5DFC600059BBC /* PassViewController.swift */; };
 		DE8F35CB20B164B600B77F22 /* BusinessRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CA20B164B600B77F22 /* BusinessRules.swift */; };
 		DE8F35CD20B164C100B77F22 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CC20B164C100B77F22 /* Protocols.swift */; };
 		DE8F35CF20B164CC00B77F22 /* Guests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CE20B164CC00B77F22 /* Guests.swift */; };
@@ -60,6 +64,10 @@
 		3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewAppSwiftTemplateUITests.swift; sourceTree = "<group>"; };
 		3A8AADEA1DF9B85E00A2B931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE115F0320BFEED200146870 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		DE4DF16420C6E7CE00999225 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		DE4DF16720C6E87600999225 /* CorrectDing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectDing.wav; sourceTree = "<group>"; };
+		DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IncorrectBuzz.wav; sourceTree = "<group>"; };
+		DE64C8D520C5DFC600059BBC /* PassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
 		DE8F35CA20B164B600B77F22 /* BusinessRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessRules.swift; sourceTree = "<group>"; };
 		DE8F35CC20B164C100B77F22 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DE8F35CE20B164CC00B77F22 /* Guests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guests.swift; sourceTree = "<group>"; };
@@ -121,9 +129,11 @@
 		3A8AADC71DF9B85E00A2B931 /* SingleViewAppSwiftTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DE4DF16620C6E86200999225 /* Sound */,
 				3A8AADC81DF9B85E00A2B931 /* AppDelegate.swift */,
 				3A8AADCA1DF9B85E00A2B931 /* ViewController.swift */,
 				3A8AADCC1DF9B85E00A2B931 /* Main.storyboard */,
+				DE64C8D520C5DFC600059BBC /* PassViewController.swift */,
 				3A8AADCF1DF9B85E00A2B931 /* Assets.xcassets */,
 				3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */,
 				3A8AADD41DF9B85E00A2B931 /* Info.plist */,
@@ -136,6 +146,7 @@
 				DE8F35D820B1651700B77F22 /* Checkpoint.swift */,
 				DE115F0520BFEEDE00146870 /* UI */,
 				DED02DCE20C2E76A00B8C6CB /* Extensions.swift */,
+				DE4DF16420C6E7CE00999225 /* SoundManager.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -164,6 +175,15 @@
 				DE115F0320BFEED200146870 /* SegmentedControl.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		DE4DF16620C6E86200999225 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				DE4DF16720C6E87600999225 /* CorrectDing.wav */,
+				DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		DED02DCB20C298F500B8C6CB /* Models */ = {
@@ -289,8 +309,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8AADD31DF9B85E00A2B931 /* LaunchScreen.storyboard in Resources */,
+				DE4DF16A20C6E87600999225 /* IncorrectBuzz.wav in Resources */,
 				3A8AADD01DF9B85E00A2B931 /* Assets.xcassets in Resources */,
 				3A8AADCE1DF9B85E00A2B931 /* Main.storyboard in Resources */,
+				DE4DF16920C6E87600999225 /* CorrectDing.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,8 +338,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8F35CB20B164B600B77F22 /* BusinessRules.swift in Sources */,
+				DE4DF16520C6E7CE00999225 /* SoundManager.swift in Sources */,
 				DEA8ED0F20B1725500D8316B /* Entrant.swift in Sources */,
 				DE8F35D120B164E100B77F22 /* Employees.swift in Sources */,
+				DE64C8D620C5DFC600059BBC /* PassViewController.swift in Sources */,
 				3A8AADCB1DF9B85E00A2B931 /* ViewController.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
 				DE8F35CD20B164C100B77F22 /* Protocols.swift in Sources */,

@@ -51,6 +51,9 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldDateEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="gNg-GH-oiI"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -218,6 +221,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldDateEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="Xt6-Bk-1wc"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -360,7 +366,7 @@
                                         </state>
                                         <connections>
                                             <action selector="generatePassPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="US9-yX-HHG"/>
-                                            <segue destination="CM6-BE-Sos" kind="show" id="sYm-i1-zcs"/>
+                                            <segue destination="CM6-BE-Sos" kind="show" identifier="showPass" id="sYm-i1-zcs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnO-Ej-VHM">
@@ -511,10 +517,10 @@
             </objects>
             <point key="canvasLocation" x="33.59375" y="38.671875"/>
         </scene>
-        <!--View Controller-->
+        <!--Pass View Controller-->
         <scene sceneID="CZd-7o-v3P">
             <objects>
-                <viewController id="CM6-BE-Sos" sceneMemberID="viewController">
+                <viewController id="CM6-BE-Sos" customClass="PassViewController" customModule="SingleViewAppSwiftTemplate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2qb-dp-Hx1"/>
                         <viewControllerLayoutGuide type="bottom" id="Ikv-Rl-d0n"/>
@@ -648,8 +654,11 @@
                                                 <state key="normal" title="Office">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="ich-M9-S73"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORv-S4-bk8">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORv-S4-bk8">
                                                 <rect key="frame" x="189.5" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -659,8 +668,11 @@
                                                 <state key="normal" title="Kitchen">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="MVd-wz-NHm"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErQ-OH-dsD">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErQ-OH-dsD">
                                                 <rect key="frame" x="379" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -670,8 +682,11 @@
                                                 <state key="normal" title="Ride Control">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="Pwf-eR-fTH"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2s-wE-79g">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2s-wE-79g">
                                                 <rect key="frame" x="568.5" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -681,13 +696,16 @@
                                                 <state key="normal" title="Amusement">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="c2K-lv-Ltl"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="eCD-zU-JaI">
                                         <rect key="frame" x="0.0" y="80" width="728" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebc-aG-yBO">
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebc-aG-yBO">
                                                 <rect key="frame" x="0.0" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -697,8 +715,11 @@
                                                 <state key="normal" title="Rides">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="x8s-6G-fyH"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDw-4b-MoO">
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDw-4b-MoO">
                                                 <rect key="frame" x="189.5" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -708,8 +729,11 @@
                                                 <state key="normal" title="Food Discount">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="qTW-Ue-xzY"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noP-42-7kE">
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noP-42-7kE">
                                                 <rect key="frame" x="379" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -719,8 +743,11 @@
                                                 <state key="normal" title="Merch. Discount">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="Ndf-gq-vdw"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cba-1u-Oh6">
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cba-1u-Oh6">
                                                 <rect key="frame" x="568.5" y="0.0" width="159.5" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -730,6 +757,9 @@
                                                 <state key="normal" title="Maintenance">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="ZCQ-GS-hkz"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -792,6 +822,15 @@
                             <constraint firstItem="BWS-83-TNn" firstAttribute="top" secondItem="E7v-R2-S6i" secondAttribute="top" id="ysO-hN-zhp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="foodDiscountLabel" destination="gtg-Y3-VCR" id="wUV-6t-Sz6"/>
+                        <outlet property="fullNameLabel" destination="2TA-Ro-IPu" id="vRU-R7-6kx"/>
+                        <outlet property="merchandiseDiscountLabel" destination="0Bs-H7-U4D" id="vWL-xV-ZR8"/>
+                        <outlet property="passType" destination="Tei-nv-nHb" id="TVI-w3-nDk"/>
+                        <outlet property="responseLabel" destination="YVc-XK-u9i" id="6Vd-x3-zA1"/>
+                        <outlet property="responseView" destination="2AK-fA-AVx" id="p68-De-Hwt"/>
+                        <outlet property="rideAccessLabel" destination="ac8-zl-D8G" id="Wtj-Td-eYI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njo-0p-FMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

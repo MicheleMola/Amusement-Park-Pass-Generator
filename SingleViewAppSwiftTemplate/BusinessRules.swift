@@ -19,7 +19,7 @@ enum AreaAccess: String {
 enum RideAccess: String {
   case all = "Access all rides"
   case skipLines = "Skip all ride lines"
-  case none
+  case none = "No Access to the rides"
 }
 
 typealias DiscountAccess = (food: Int, merchandise: Int)
