@@ -68,8 +68,13 @@ class ViewController: UIViewController {
   
   var entrantType: EntrantType = EntrantType.none
   
-  lazy var datePickerView: UIDatePicker = UIDatePicker()
-  lazy var selectedTextField: UITextField = UITextField()
+  var datePickerView: UIDatePicker = UIDatePicker()
+  var selectedTextField: UITextField = UITextField()
+  
+  let pickerView = UIPickerView()
+  let pickerData = ["1001", "1002", "1003", "2001", "2002"]
+  
+  @IBOutlet weak var generatePassButton: UIButton!
   
   var selectedType: String {
     return typeSegmentedControl.titleForSegment(at: typeSegmentedControl.selectedSegmentIndex)!
@@ -89,9 +94,21 @@ class ViewController: UIViewController {
     showSubtype()
     setEnabled(fromGroup: fieldsCollection, toValue: false)
     
+    generatePassButton.isEnabled = false
+    
     NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-  
+    
+    projectNumberTextField.inputView = pickerView
+    pickerView.delegate = self
+    
+    let toolbar = UIToolbar()
+    toolbar.sizeToFit()
+    
+    let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressedPickerView))
+    toolbar.setItems([done], animated: false)
+    
+    projectNumberTextField.inputAccessoryView = toolbar
   }
   
   @IBAction func typeSegmentedControlPressed() {
@@ -130,6 +147,8 @@ class ViewController: UIViewController {
     setEnabled(fromGroup: fieldsCollection, toValue: false)
     
     var fieldsToEnable: [LabelAndTextField] = [LabelAndTextField]()
+    
+    generatePassButton.isEnabled = true
     
     switch selectedType {
     case "Guest":
@@ -213,7 +232,7 @@ class ViewController: UIViewController {
     let toolbar = UIToolbar()
     toolbar.sizeToFit()
     
-    let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+    let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressedDataPickerView))
     toolbar.setItems([done], animated: false)
     
     sender.inputAccessoryView = toolbar
@@ -222,14 +241,17 @@ class ViewController: UIViewController {
     datePickerView.datePickerMode = .date
   }
   
-  @objc func donePressed() {
+  @objc func donePressedDataPickerView() {
     let formatter = DateFormatter()
     formatter.dateFormat = "MM / dd / yyyy"
     
     let dateString = formatter.string(from: datePickerView.date)
     selectedTextField.text = "\(dateString)"
     self.view.endEditing(true)
-    
+  }
+  
+  @objc func donePressedPickerView() {
+    self.view.endEditing(true)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -432,8 +454,26 @@ extension ViewController {
   
 }
 
-// Keyboard
-extension ViewController {  
+// Keyboard & PickerView for Project Number
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+  
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return pickerData.count
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return pickerData[row]
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    projectNumberTextField.text = pickerData[row]
+  }
+  
+  
   @objc func keyboardWillShow(sender: NSNotification) {
     self.view.frame.origin.y -= 150
   }

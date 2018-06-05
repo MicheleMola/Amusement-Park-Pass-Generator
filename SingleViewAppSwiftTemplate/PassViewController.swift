@@ -44,7 +44,6 @@ class PassViewController: UIViewController {
         if let employee = pass.entrant as? Employee, let firstName = employee.firstName, let lastName = employee.lastName { fullNameLabel.text = "\(firstName) \(lastName)" }
       case .vendor:
         if let vendor = pass.entrant as? Vendor, let firstName = vendor.firstName, let lastName = vendor.lastName { fullNameLabel.text = "\(firstName) \(lastName)" }
-        
       }
       
       if pass.entrant.rideAccess.contains(.all){

@@ -18,6 +18,7 @@
 		DE4DF16520C6E7CE00999225 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4DF16420C6E7CE00999225 /* SoundManager.swift */; };
 		DE4DF16920C6E87600999225 /* CorrectDing.wav in Resources */ = {isa = PBXBuildFile; fileRef = DE4DF16720C6E87600999225 /* CorrectDing.wav */; };
 		DE4DF16A20C6E87600999225 /* IncorrectBuzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */; };
+		DE5E010320C72A0F00B7A5C0 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E010220C72A0F00B7A5C0 /* Validation.swift */; };
 		DE64C8D620C5DFC600059BBC /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE64C8D520C5DFC600059BBC /* PassViewController.swift */; };
 		DE8F35CB20B164B600B77F22 /* BusinessRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CA20B164B600B77F22 /* BusinessRules.swift */; };
 		DE8F35CD20B164C100B77F22 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CC20B164C100B77F22 /* Protocols.swift */; };
@@ -67,6 +68,7 @@
 		DE4DF16420C6E7CE00999225 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		DE4DF16720C6E87600999225 /* CorrectDing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectDing.wav; sourceTree = "<group>"; };
 		DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IncorrectBuzz.wav; sourceTree = "<group>"; };
+		DE5E010220C72A0F00B7A5C0 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		DE64C8D520C5DFC600059BBC /* PassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
 		DE8F35CA20B164B600B77F22 /* BusinessRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessRules.swift; sourceTree = "<group>"; };
 		DE8F35CC20B164C100B77F22 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				DE115F0520BFEEDE00146870 /* UI */,
 				DED02DCE20C2E76A00B8C6CB /* Extensions.swift */,
 				DE4DF16420C6E7CE00999225 /* SoundManager.swift */,
+				DE5E010220C72A0F00B7A5C0 /* Validation.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
 				DE8F35CD20B164C100B77F22 /* Protocols.swift in Sources */,
 				DE8F35D920B1651700B77F22 /* Checkpoint.swift in Sources */,
+				DE5E010320C72A0F00B7A5C0 /* Validation.swift in Sources */,
 				DE8F35D520B164FE00B77F22 /* Test.swift in Sources */,
 				DE8F35CF20B164CC00B77F22 /* Guests.swift in Sources */,
 				DED02DCA20C298DF00B8C6CB /* Vendor.swift in Sources */,

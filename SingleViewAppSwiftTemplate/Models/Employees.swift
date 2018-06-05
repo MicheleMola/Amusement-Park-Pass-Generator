@@ -48,10 +48,10 @@ struct FoodServiceEmployee: Employee {
     guard let state = state else { throw InvalidField.invalidState }
     self.state = state
     
-    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    guard let zipCode = zipCode, Validation.shared.isValidRegEx(String(zipCode), .zipCode) else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty, Validation.shared.isValidRegEx(socialSecurityNumber, .socialSecurityNumber) else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
   }
 }
@@ -90,10 +90,10 @@ struct RideServiceEmployee: Employee {
     guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
-    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    guard let zipCode = zipCode, Validation.shared.isValidRegEx(String(zipCode), .zipCode) else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty, Validation.shared.isValidRegEx(socialSecurityNumber, .socialSecurityNumber) else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
   }
 }
@@ -132,10 +132,10 @@ struct MaintenanceEmployee: Employee {
     guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
-    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    guard let zipCode = zipCode, Validation.shared.isValidRegEx(String(zipCode), .zipCode) else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty, Validation.shared.isValidRegEx(socialSecurityNumber, .socialSecurityNumber) else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
   }
 }
@@ -176,10 +176,10 @@ struct Manager: Employee {
     guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
-    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    guard let zipCode = zipCode, Validation.shared.isValidRegEx(String(zipCode), .zipCode) else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty, Validation.shared.isValidRegEx(socialSecurityNumber, .socialSecurityNumber) else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
     
     guard let managementTier = managementTier else { throw InvalidField.invalidManagementTier }
@@ -223,10 +223,10 @@ struct Contract: Employee {
     guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
-    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    guard let zipCode = zipCode, Validation.shared.isValidRegEx(String(zipCode), .zipCode) else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
     
-    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty else { throw InvalidField.invalidSocialSecurityNumber }
+    guard let socialSecurityNumber = socialSecurityNumber, !socialSecurityNumber.isEmpty, Validation.shared.isValidRegEx(socialSecurityNumber, .socialSecurityNumber) else { throw InvalidField.invalidSocialSecurityNumber }
     self.socialSecurityNumber = socialSecurityNumber
     
     guard let projectNumber = projectNumber else { throw InvalidField.invalidProjectNumber }

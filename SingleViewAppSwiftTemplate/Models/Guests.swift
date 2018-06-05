@@ -82,7 +82,7 @@ struct SeasonPass: Guest {
     guard let state = state, !state.isEmpty else { throw InvalidField.invalidState }
     self.state = state
     
-    guard let zipCode = zipCode else { throw InvalidField.invalidZipCode }
+    guard let zipCode = zipCode, Validation.shared.isValidRegEx(String(zipCode), .zipCode) else { throw InvalidField.invalidZipCode }
     self.zipCode = zipCode
   }
   

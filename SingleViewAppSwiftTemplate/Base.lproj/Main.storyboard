@@ -218,7 +218,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="1YG-lJ-Znu"/>
                                                 </constraints>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -335,7 +335,7 @@
                                                 </constraints>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -497,6 +497,7 @@
                         <outlet property="dateOfVisitTextField" destination="tX7-HI-LuA" id="xmz-7j-v8Y"/>
                         <outlet property="firstnameLabel" destination="G7d-5S-VqM" id="1cs-1Q-IGN"/>
                         <outlet property="firstnameTextField" destination="k2e-w7-e4M" id="KVN-y7-joV"/>
+                        <outlet property="generatePassButton" destination="FrH-sp-Wjw" id="LuP-Gk-a5d"/>
                         <outlet property="lastnameLabel" destination="o7O-5f-cjx" id="BUG-BS-sBn"/>
                         <outlet property="lastnameTextField" destination="nR6-Sy-ace" id="ifz-rO-FkN"/>
                         <outlet property="projectNumberLabel" destination="Xv6-KF-AIf" id="i6j-AZ-oyG"/>
