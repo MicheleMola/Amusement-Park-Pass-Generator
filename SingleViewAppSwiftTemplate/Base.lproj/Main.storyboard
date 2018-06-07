@@ -355,34 +355,44 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="HTJ-Yn-2C0">
-                                <rect key="frame" x="20" y="905" width="728" height="50"/>
+                                <rect key="frame" x="20" y="905" width="728" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrH-sp-Wjw">
-                                        <rect key="frame" x="0.0" y="0.0" width="349" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="349" height="60"/>
                                         <color key="backgroundColor" red="0.40000000000000002" green="0.57647058823529407" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Generate Pass">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="generatePassPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="US9-yX-HHG"/>
                                             <segue destination="CM6-BE-Sos" kind="show" identifier="showPass" id="sYm-i1-zcs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnO-Ej-VHM">
-                                        <rect key="frame" x="379" y="0.0" width="349" height="50"/>
+                                        <rect key="frame" x="379" y="0.0" width="349" height="60"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Populate Data">
                                             <color key="titleColor" red="0.40000000000000002" green="0.57647058823529407" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="populateDataPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yHh-24-dHO"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="vfV-aX-RtN"/>
+                                    <constraint firstAttribute="height" constant="60" id="vfV-aX-RtN"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hd4-Py-Xxt">
@@ -614,6 +624,11 @@
                                     <constraint firstItem="MQd-fA-6Zn" firstAttribute="centerY" secondItem="1eJ-CS-V55" secondAttribute="centerY" id="4ms-4S-lYW"/>
                                     <constraint firstAttribute="height" constant="330" id="b3E-dc-FIJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYM-cc-8kn">
                                 <rect key="frame" x="0.0" y="485" width="768" height="1"/>
@@ -655,6 +670,11 @@
                                                 <state key="normal" title="Office">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="ich-M9-S73"/>
                                                 </connections>
@@ -669,6 +689,11 @@
                                                 <state key="normal" title="Kitchen">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="MVd-wz-NHm"/>
                                                 </connections>
@@ -683,6 +708,11 @@
                                                 <state key="normal" title="Ride Control">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="Pwf-eR-fTH"/>
                                                 </connections>
@@ -697,6 +727,11 @@
                                                 <state key="normal" title="Amusement">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="c2K-lv-Ltl"/>
                                                 </connections>
@@ -716,6 +751,11 @@
                                                 <state key="normal" title="Rides">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="x8s-6G-fyH"/>
                                                 </connections>
@@ -730,6 +770,11 @@
                                                 <state key="normal" title="Food Discount">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="qTW-Ue-xzY"/>
                                                 </connections>
@@ -744,6 +789,11 @@
                                                 <state key="normal" title="Merch. Discount">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="Ndf-gq-vdw"/>
                                                 </connections>
@@ -758,6 +808,11 @@
                                                 <state key="normal" title="Maintenance">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.57647058819999997" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="accessPressed:" destination="CM6-BE-Sos" eventType="touchUpInside" id="ZCQ-GS-hkz"/>
                                                 </connections>
@@ -782,6 +837,11 @@
                                     <constraint firstAttribute="height" constant="150" id="sk3-wK-hZk"/>
                                     <constraint firstItem="YVc-XK-u9i" firstAttribute="centerX" secondItem="2AK-fA-AVx" secondAttribute="centerX" id="xWQ-ms-SzE"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjt-5K-cQs">
                                 <rect key="frame" x="254" y="904" width="260" height="80"/>
@@ -794,6 +854,11 @@
                                 <state key="normal" title="Create New Pass">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="mz5-dl-xdg"/>
                                 </connections>

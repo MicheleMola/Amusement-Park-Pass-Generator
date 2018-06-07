@@ -20,6 +20,7 @@
 		DE4DF16A20C6E87600999225 /* IncorrectBuzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */; };
 		DE5E010320C72A0F00B7A5C0 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E010220C72A0F00B7A5C0 /* Validation.swift */; };
 		DE64C8D620C5DFC600059BBC /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE64C8D520C5DFC600059BBC /* PassViewController.swift */; };
+		DE76856E20C9C92100E260FE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE76856D20C9C92100E260FE /* UIView.swift */; };
 		DE8F35CB20B164B600B77F22 /* BusinessRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CA20B164B600B77F22 /* BusinessRules.swift */; };
 		DE8F35CD20B164C100B77F22 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CC20B164C100B77F22 /* Protocols.swift */; };
 		DE8F35CF20B164CC00B77F22 /* Guests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F35CE20B164CC00B77F22 /* Guests.swift */; };
@@ -70,6 +71,7 @@
 		DE4DF16820C6E87600999225 /* IncorrectBuzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IncorrectBuzz.wav; sourceTree = "<group>"; };
 		DE5E010220C72A0F00B7A5C0 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		DE64C8D520C5DFC600059BBC /* PassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
+		DE76856D20C9C92100E260FE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		DE8F35CA20B164B600B77F22 /* BusinessRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessRules.swift; sourceTree = "<group>"; };
 		DE8F35CC20B164C100B77F22 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DE8F35CE20B164CC00B77F22 /* Guests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guests.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				DE115F0320BFEED200146870 /* SegmentedControl.swift */,
+				DE76856D20C9C92100E260FE /* UIView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				DE8F35D720B1650800B77F22 /* Pass.swift in Sources */,
 				DE115F0420BFEED200146870 /* SegmentedControl.swift in Sources */,
 				DE8F35D320B164F200B77F22 /* Errors.swift in Sources */,
+				DE76856E20C9C92100E260FE /* UIView.swift in Sources */,
 				DED02DCF20C2E76A00B8C6CB /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
