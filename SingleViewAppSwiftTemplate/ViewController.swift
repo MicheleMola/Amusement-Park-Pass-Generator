@@ -271,52 +271,38 @@ class ViewController: UIViewController {
 // Populate Form & Generate Pass
 extension ViewController {
   
-  enum LabelText: String {
-    case firstname = "First Name"
-    case lastname = "Last Name"
-    case dateOfVisit = "Date of Visit"
-    case streetAddress = "Street Address"
-    case city = "City"
-    case state = "State"
-    case zipCode = "Zip Code"
-    case dateOfBirth = "Date of Birth"
-    case ssn = "SSN"
-    case projectNumber = "Project #"
-  }
-  
-  func getText(fromLabel label: UILabel) -> String? {
-    if let text = label.text, let labelText = LabelText(rawValue: text) {
-      switch labelText {
-      case .firstname:
-        return "Michele"
-      case .lastname:
-        return "Mola"
-      case .dateOfVisit:
-        return "06 / 01 / 2018"
-      case .streetAddress:
-        return "Via Giacomo Leopardi 10"
-      case .city:
-        return "Naples"
-      case .state:
-        return "Italy"
-      case .zipCode:
-        return "80147"
-      case .dateOfBirth:
-        return "12 / 10 / 1992"
-      case .ssn:
-        return "081-32-2678"
-      case .projectNumber:
-        guard let projectNumber = projectNumbers.randomItem() else { return nil }
-        return "\(projectNumber)"
-      }
+  func getText(fromTextFieldTag tag: Int) -> String? {
+    switch tag {
+    case 0:
+      return "12 / 10 / 1992"
+    case 1:
+      return "081-32-2678"
+    case 2:
+      guard let projectNumber = projectNumbers.randomItem() else { return nil }
+      return "\(projectNumber)"
+    case 3:
+      return "Michele"
+    case 4:
+      return "Mola"
+    case 6:
+      return "06 / 01 / 2018"
+    case 7:
+      return "Via Giacomo Leopardi 10"
+    case 8:
+      return "Naples"
+    case 9:
+      return "Italy"
+    case 10:
+      return "80147"
+    default:
+      return nil
     }
-    return nil
   }
   
   func populateForm() {
     fieldsCollection.forEach({ label, textField in
       if textField.isEnabled {
-        textField.text = getText(fromLabel: label)
+        textField.text = getText(fromTextFieldTag: textField.tag)
       }
     })
   }
