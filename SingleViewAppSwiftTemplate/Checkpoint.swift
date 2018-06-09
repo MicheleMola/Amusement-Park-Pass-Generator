@@ -71,13 +71,17 @@ class Checkpoint {
     }
   }
   
-  func canAccess(toRide ride: RideAccess, withPass pass: inout Pass) -> (String, Bool) {
+  func canAccessToRide(withPass pass: inout Pass) -> (String, Bool) {
     if isValidSwipeTime(fromPass: &pass) {
-      let birthday = pass.entrant.getBirthday()
-      if pass.entrant.rideAccess.contains(ride) {
+      if pass.entrant.rideAccess.contains(.all) {
+        let birthday = pass.entrant.getBirthday()
         let birthdayString = checkBirthday(fromBirthday: birthday)
+        var responseString = "\(birthdayString)Access Allowed"
+        if pass.entrant.rideAccess.contains(.skipLines) {
+          responseString += ", may skip rides"
+        }
         correctSound.play()
-        return ("\(birthdayString)Access Allowed", true)
+        return (responseString, true)
       } else {
         wrongSound.play()
         return ("Access Not Allowed", false)

@@ -16,19 +16,11 @@ enum GuestType: String {
   case seasonPass = "Season Pass"
 }
 
-extension GuestType {
-  static let all = [classic.rawValue, vip.rawValue, child.rawValue, senior.rawValue, seasonPass.rawValue]
-}
-
 enum EmployeeType: String {
   case foodServices = "Food Services"
   case rideServices = "Ride Services"
   case maintenance = "Maintenance"
   case contract = "Contract"
-}
-
-extension EmployeeType {
-  static let all = [foodServices.rawValue, rideServices.rawValue, maintenance.rawValue, contract.rawValue]
 }
 
 enum ManagerType: String {
@@ -37,21 +29,12 @@ enum ManagerType: String {
   case senior = "Senior"
 }
 
-extension ManagerType {
-  static let all = [shift.rawValue, general.rawValue, senior.rawValue]
-}
-
 enum VendorName: String {
   case acme = "Acme"
   case orkin = "Orkin"
   case fedex = "Fedex"
   case nwElectrical = "NW Electrical"
 }
-
-extension VendorName {
-  static let all = [acme.rawValue, orkin.rawValue, fedex.rawValue, nwElectrical.rawValue]
-}
-
 
 enum EntrantType {
   case none

@@ -64,6 +64,11 @@ class ViewController: UIViewController {
   lazy var contractCollection: [LabelAndTextField] = [firstnameGroup, lastnameGroup, streetAddressGroup, cityGroup, stateGroup, zipCodeGroup, dateOfBirthGroup, ssnGroup, projectNumberGroup]
   lazy var vendorCollection: [LabelAndTextField] = [firstnameGroup, lastnameGroup, dateOfVisitGroup, dateOfBirthGroup]
   
+  lazy var guestType = [GuestType.classic.rawValue, GuestType.vip.rawValue, GuestType.child.rawValue, GuestType.senior.rawValue, GuestType.seasonPass.rawValue]
+  lazy var employeeType = [EmployeeType.foodServices.rawValue, EmployeeType.rideServices.rawValue, EmployeeType.maintenance.rawValue, EmployeeType.contract.rawValue]
+  lazy var managerType = [ManagerType.shift.rawValue, ManagerType.general.rawValue, ManagerType.senior.rawValue]
+  lazy var vendorType = [VendorName.acme.rawValue, VendorName.orkin.rawValue, VendorName.fedex.rawValue, VendorName.nwElectrical.rawValue]
+  
   let projectNumbers = [1001, 1002, 1003, 2001, 2002]
   
   var entrantType: EntrantType = EntrantType.none
@@ -121,22 +126,21 @@ class ViewController: UIViewController {
   
   func showSubtype() {
     setEnabled(fromGroup: fieldsCollection, toValue: false)
+    subtypeSegmentedControl.removeAllSegments()
     
     var subtypes = [String]()
     switch selectedType {
     case "Guest":
-      subtypes = GuestType.all
+      subtypes = guestType
     case "Employee":
-      subtypes = EmployeeType.all
+      subtypes = employeeType
     case "Manager":
-      subtypes = ManagerType.all
+      subtypes = managerType
     case "Vendor":
-      subtypes = VendorName.all
+      subtypes = vendorType
     default:
       subtypes = []
     }
-    
-    subtypeSegmentedControl.removeAllSegments()
     
     for (index, subtype) in subtypes.enumerated() {
       subtypeSegmentedControl.insertSegment(withTitle: subtype, at: index, animated: true)

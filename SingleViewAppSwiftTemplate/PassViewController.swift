@@ -43,10 +43,15 @@ class PassViewController: UIViewController {
       case .foodServicesEmployee, .rideServicesEmployee, .maintenanceEmployee, .manager, .contractEmployee:
         if let employee = pass.entrant as? Employee, let firstName = employee.firstName, let lastName = employee.lastName { fullNameLabel.text = "\(firstName) \(lastName)" }
       case .vendor:
-        if let vendor = pass.entrant as? Vendor, let firstName = vendor.firstName, let lastName = vendor.lastName { fullNameLabel.text = "\(firstName) \(lastName)" }
+        if let vendor = pass.entrant as? Vendor, let firstName = vendor.firstName, let lastName = vendor.lastName {
+          fullNameLabel.text = "\(firstName) \(lastName)"
+          if let companyName = vendor.company {
+            passType.text?.append(" - Company name: \(companyName)")
+          }
+        }
       }
       
-      if pass.entrant.rideAccess.contains(.all){
+      if pass.entrant.rideAccess.contains(.all) {
         rideAccessLabel.text = "• Unlimited Rides"
       }
       
@@ -72,7 +77,7 @@ class PassViewController: UIViewController {
       case 3:
         feedbackTuple = checkpoint.canAccess(toArea: .amusement, withPass: &pass!)
       case 4:
-        feedbackTuple = checkpoint.canAccess(toRide: .all, withPass: &pass!)
+        feedbackTuple = checkpoint.canAccessToRide(withPass: &pass!)
       case 5:
         feedbackTuple = checkpoint.percentageDiscount(atArea: .food, withPass: &pass!)
       case 6:

@@ -16,7 +16,7 @@ struct Classic: Guest {
 
 struct Vip: Guest {
   let areaAccess: [AreaAccess] = [.amusement]
-  let rideAccess: [RideAccess] = [.all]
+  let rideAccess: [RideAccess] = [.all, .skipLines]
   let discountAccess: DiscountAccess = (10, 20)
 }
 
