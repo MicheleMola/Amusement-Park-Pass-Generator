@@ -69,7 +69,7 @@ class ViewController: UIViewController {
   lazy var managerType = [ManagerType.shift.rawValue, ManagerType.general.rawValue, ManagerType.senior.rawValue]
   lazy var vendorType = [VendorName.acme.rawValue, VendorName.orkin.rawValue, VendorName.fedex.rawValue, VendorName.nwElectrical.rawValue]
   
-  let projectNumbers = [1001, 1002, 1003, 2001, 2002]
+  let projectNumbers = ["1001", "1002", "1003", "2001", "2002"]
   
   var entrantType: EntrantType = EntrantType.none
   
@@ -77,7 +77,6 @@ class ViewController: UIViewController {
   var selectedTextField: UITextField = UITextField()
   
   let pickerView = UIPickerView()
-  let pickerData = ["1001", "1002", "1003", "2001", "2002"]
   
   @IBOutlet weak var generatePassButton: UIButton!
   
@@ -452,15 +451,15 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   }
   
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return pickerData.count
+    return projectNumbers.count
   }
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return pickerData[row]
+    return projectNumbers[row]
   }
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    projectNumberTextField.text = pickerData[row]
+    projectNumberTextField.text = projectNumbers[row]
   }
   
   
