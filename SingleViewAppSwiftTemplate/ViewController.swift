@@ -464,7 +464,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   
   
   @objc func keyboardWillShow(sender: NSNotification) {
-    self.view.frame.origin.y -= 150
+    self.view.frame.origin.y -= self.view.frame.origin.y != 0 ? 0 : 150
   }
   
   @objc func keyboardWillHide(sender: NSNotification) {
