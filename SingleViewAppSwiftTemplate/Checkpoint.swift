@@ -71,7 +71,7 @@ class Checkpoint {
     }
   }
   
-  func canAccessToRide(withPass pass: inout Pass) -> (String, Bool) {
+  func canAccessToRides(withPass pass: inout Pass) -> (String, Bool) {
     if isValidSwipeTime(fromPass: &pass) {
       if pass.entrant.rideAccess.contains(.all) {
         let birthday = pass.entrant.getBirthday()

@@ -77,7 +77,7 @@ class PassViewController: UIViewController {
       case 3:
         feedbackTuple = checkpoint.canAccess(toArea: .amusement, withPass: &pass!)
       case 4:
-        feedbackTuple = checkpoint.canAccessToRide(withPass: &pass!)
+        feedbackTuple = checkpoint.canAccessToRides(withPass: &pass!)
       case 5:
         feedbackTuple = checkpoint.percentageDiscount(atArea: .food, withPass: &pass!)
       case 6:
