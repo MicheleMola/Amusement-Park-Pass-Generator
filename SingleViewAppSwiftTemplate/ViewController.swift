@@ -273,7 +273,10 @@ extension ViewController {
   func getText(fromTextFieldTag tag: Int) -> String? {
     switch tag {
     case 0:
-      return "12 / 10 / 1992"
+      if selectedSubtype == GuestType.child.rawValue {
+        return "12 / 10 / 2015"
+      }
+      return "12 / 10 / 1982"
     case 1:
       return "081-32-2678"
     case 2:
@@ -310,6 +313,7 @@ extension ViewController {
   func generatePass() -> Pass? {
     var entrant: Entrant!
     var passType: PassType
+    
     switch entrantType {
     case .employee(let type):
       switch type {
